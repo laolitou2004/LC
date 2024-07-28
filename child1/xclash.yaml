@@ -1,0 +1,123 @@
+# HTTP(S) and SOCKS4(A)/SOCKS5 server on the same port
+mixed-port: 7890
+
+# Set to true to allow connections to the local-end server from
+# other LAN IP addresses
+allow-lan: true
+
+# This is only applicable when `allow-lan` is `true`
+# '*': bind all IP addresses
+# 192.168.122.11: bind a single IPv4 address
+# "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
+bind-address: '*'
+
+# Clash router working mode
+# rule: rule-based packet routing
+# global: all packets will be forwarded to a single endpoint
+# direct: directly forward the packets to the Internet
+mode: global
+
+# Clash by default prints logs to STDOUT
+# info / warning / error / debug / silent
+log-level: debug
+
+# When set to false, resolver won't translate hostnames to IPv6 addresses
+ipv6: false
+
+# RESTful web API listening address
+external-controller: 0.0.0.0:45672
+secret: ''
+
+# Static hosts for DNS server and connection establishment (like /etc/hosts)
+#
+# Wildcard hostnames are supported (e.g. *.clash.dev, *.foo.*.example.com)
+# Non-wildcard domain names have a higher priority than wildcard domain names
+# e.g. foo.example.com > *.example.com > .example.com
+# P.S. +.foo.com equals to .foo.com and foo.com
+hosts: null
+# '*.clash.dev': 127.0.0.1
+# '.dev': 127.0.0.1
+# 'alpha.clash.dev': '::1'
+profile:
+  # Store the `select` results in $HOME/.config/clash/.cache
+  # set false If you don't want this behavior
+  # when two different configurations have groups with the same name, the selected values are shared
+  store-selected: true
+
+  # persistence fakeip
+  store-fake-ip: true
+
+# Outbound interface name
+#interface-name: wlan0
+
+#ebpf:
+#  redirect-to-tun:
+#    - wlan0
+
+tun:
+  enable: true
+  stack: system # or gvisor
+  dns-hijack:
+    - any:53
+  auto-route: true
+  auto-redir: true
+  auto-detect-interface: true
+
+iptables:
+  enable: false
+
+#routing-mark: 666
+
+# DNS server settings
+# This section is optional. When not present, the DNS server will be disabled.
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  fake-ip-range: 192.168.32.1/16
+  # use-hosts: true # lookup hosts and return IP record
+  # Hostnames in this list will not be resolved with fake IPs
+  # i.e. questions to these domain names will always be answered with their
+  # real IP addresses
+  fake-ip-filter:
+    - '*.lan'
+    - '*.local'
+  # These nameservers are used to resolve the DNS nameserver hostnames below.
+  # Specify IP addresses only
+  default-nameserver:
+    - 114.114.114.114
+    - 8.8.4.4
+  # Supports UDP, TCP, DoT, DoH. You can specify the port to connect to.
+  # All DNS questions are sent directly to the nameserver, without proxies
+  # involved. Clash answers the DNS question with the first result gathered.
+  nameserver:
+    - 1.0.0.1
+    - 114.114.114.114
+    - 8.8.4.4
+    
+
+# GEOIP库
+#geox-url:
+#  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
+#  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+#  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb"
+
+# 请在这里添加您的节点
+proxies:
+  - {"name":"1","type":"vless","server":"130.61.203.115","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"2","type":"vless","server":"132.145.54.84","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"4","type":"vless","server":"152.70.59.90","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"5","type":"vless","server":"168.138.197.97","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"6","type":"vless","server":"140.238.12.52","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"7","type":"vless","server":"132.226.163.224","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"8","type":"vless","server":"130.61.109.6","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"9","type":"vless","server":"130.61.107.238","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"11","type":"vless","server":"141.147.47.32","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"12","type":"vless","server":"141.147.61.116","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"13","type":"vless","server":"141.147.92.143","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"16","type":"vless","server":"141.145.205.115","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"19","type":"vless","server":"150.230.20.156","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"20","type":"vless","server":"193.123.61.142","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"21","type":"vless","server":"193.123.93.103","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"22","type":"vless","server":"143.47.243.144","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
+  - {"name":"23","type":"vless","server":"8.210.34.188","port":8443,"uuid":"d041e5d7-d318-487a-9919-b12720120175","tls":true,"servername":"asad-1u3.pages.dev","network":"ws","ws-opts":{"path":"/?ed=2048","headers":{"host":"asad-1u3.pages.dev"}}}
